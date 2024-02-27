@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Launch Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('/pexels-pixabay-87611.jpg');
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            max-width: 800px;
+            padding: 20px;
+            background-color: orangered;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 60px;
+        }
+
+        .product-image {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .product-info {
+            flex: 2;
+        }
+
+        .countdown {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .img1 {
+            border-radius: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="product-image">
+            <img class="img1" src="/Grad_ZarandiRocket_FeaturedImage_750x500_iStock-487797752.jpg" alt="Product Image"
+                style="width: 100%;">
+        </div>
+        <div class="product-info">
+            <h1>OPERATION NASA TO THE SUN</h1>
+            <p>Embark on an incredible journey to explore the majestic Sun! Brace yourself for an awe-inspiring
+                adventure through space as we journey towards the heart of our solar system. Experience the warmth of
+                the Sun's rays and witness the mesmerizing dance of solar flares up close. Delve into the secrets of the
+                Sun's atmosphere, uncovering the mysteries of solar storms and sunspots along the way. Feel the power of
+                the Sun's energy, which sustains life on Earth and shapes the dynamics of our entire solar system. Join
+                us on this captivating expedition as we discover the wonders of our closest celestial neighbor and gain
+                a deeper understanding of the star that illuminates our world..</p>
+            <div class="countdown" id="countdown">
+                Launching in: <span id="days"></span> days, <span id="hours"></span> hours, <span id="minutes"></span>
+                minutes, <span id="seconds"></span> seconds
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set the launch date and time (modify accordingly)
+        var launchDate = new Date("March 1, 2024 00:00:00").getTime();
+
+        // Update the countdown every second
+        var countdownInterval = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = launchDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            // If the launch date has passed, display a message
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "Product has launched!";
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
